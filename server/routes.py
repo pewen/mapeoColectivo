@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
 from time import gmtime, strftime
 from string import ascii_uppercase, digits
 import random
@@ -20,9 +21,11 @@ from .utils import read4json, save2json, create_menssage
 # Create the flask app
 app = Flask(__name__,
             template_folder="../templates/_site",
-            static_folder="../static")
+            static_folder="../static",
+            instance_relative_config=True)
 
 # Cofiguration of flask
+sys.path.insert(0, os.getcwd())
 app.config.from_object('server.config.DevelopmentConfig')
 
 # Allow post from other domains with cookies
