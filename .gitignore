@@ -1,0 +1,18 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+
+# For Ipython
+.ipynb_checkpoints/
+
+# C and Fortran extensions
+*.so
+*.o
+
+# For emacs
+*~
+\#*
+.#*
+
+# Ignore the twitter and flask secrets keys
+server/keys.py
