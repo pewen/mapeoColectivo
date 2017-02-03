@@ -183,15 +183,6 @@ Direct action routes
 """
 
 
-@app.route('/direct_action/layers', methods=['GET'])
-def da_layers_names():
-    """
-    Get the valid layers names
-    """
-    layers = jsonify(app.config['DA_LAYERS_NAMES'])
-    return layers
-
-
 @app.route('/direct_action/layer/<layer_name>', methods=['GET'])
 def da_data(layer_name):
     """
@@ -314,15 +305,6 @@ def da_new_point():
 Citizen map routes
 ------------------
 """
-
-
-@app.route('/citizen_map/layers', methods=['GET'])
-def cm_layers_names():
-    """
-    Get the valid layers names
-    """
-    layers = jsonify(app.config['CM_LAYERS_NAMES'])
-    return layers
 
 
 @app.route('/citizen_map/layer/<layer_name>', methods=['GET'])
