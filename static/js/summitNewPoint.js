@@ -35,10 +35,6 @@ function getFile(files) {
     };
 }
 
-
-var serverUrl_post = "https://mapeocolectivo-pewen.rhcloud.com/direct_action/new_point";
-var a;
-
 var correctName = {
     "Micro basural": "micro_basural",
     "Bache": "bache",
@@ -73,7 +69,7 @@ function summitNewPoint() {
 	    var titleInput = document.getElementById('titleInput');
 	}
     }
-    console.log(correctName[layerName]);
+
     var jsonRequest = {'titulo': title,
 		       'tipo': correctName[layerName],
 		       'barrio': district,
@@ -96,7 +92,8 @@ function summitNewPoint() {
     xhr.addEventListener("load", transferComplete);
     xhr.addEventListener("error", transferFailed);
 
-    xhr.open("POST", serverUrl_post);
+    postUrl = serverurl + "direct_action/new_point"
+    xhr.open("POST", postUrl);
     xhr.overrideMimeType('multipart/form-data');
     
     xhr.send(formData);
@@ -120,7 +117,6 @@ function summitNewPoint() {
 	$('#newPointModal').modal('hide');
 
 	if (xhr.readyState == 4) {
-	    a = xhr;
 	    if(xhr.status == 200)
 		alert(xhr.responseText);
 	    else

@@ -4,7 +4,6 @@
 */
 
 var map; // Map variable
-var serverUrl = "https://mapeocolectivo-pewen.rhcloud.com/";
 // isDirectAction == true if is the directAction url
 var actualUrl = window.location.href.indexOf("/accionDirecta");
 var isDirectActionUrl = actualUrl > -1;

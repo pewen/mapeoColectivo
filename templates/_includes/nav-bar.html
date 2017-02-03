@@ -16,12 +16,14 @@
     </div><!--/ navbar-header -->
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="{{ "#banner" | prepend: site.baseurl }}">INICIO</a></li>
-        <li><a href="{{ "/accionDirecta" | prepend: site.baseurl }}">ACCIÓN DIRECTA</a></li>
-        <li><a href="{{ "/mapeoCiudadano" | prepend: site.baseurl }}">MAPEO CIUDADANO</a></li>
-	<li><a href="{{ "/historico" | prepend: site.baseurl }}">HISTÓRICO</a></li>
+	{% raw %}
+        <li><a href="{{ serverUrl + "#banner" }}">INICIO</a></li>
+        <li><a href="{{ serverUrl + "accionDirecta" }}">ACCIÓN DIRECTA</a></li>
+        <li><a href="{{ serverUrl + "mapeoCiudadano" }}">MAPEO CIUDADANO</a></li>
+	<li><a href="{{ serverUrl + "historico" }}">HISTÓRICO</a></li>
 	<li id="loginButton" class="navbar-button header-hidden" onclick="logIn()">LOGIN</li>
 	<li id="logoutButton" class="navbar-buttonheader-hidden" onclick="logOut()">LOGOUT</li>
+	{% endraw %}
       </ul>
     </div><!--/ collapse navbar-collapse -->
   </div><!--/ container-fluid -->

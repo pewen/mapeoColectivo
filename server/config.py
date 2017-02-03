@@ -9,8 +9,10 @@ from .keys import flask_key, twitter_key, twitter_secret
 # Configure the base path depending if is the local machine or openshift
 if 'openshift' in sys.path[1]:
     PATH_BASE = '/var/lib/openshift/589353cf2d52713621000059/app-root/runtime/repo/'
+    SERVER_URL = 'https://mapeocolectivo-pewen.rhcloud.com/'
 else:
     PATH_BASE = './'
+    SERVER_URL = 'http://127.0.0.1:5000/'
 
 
 class Config(object):
@@ -19,6 +21,8 @@ class Config(object):
 
     # Flask secret key
     SECRET_KEY = flask_key
+
+    SERVER_URL = SERVER_URL
 
     # Direct action layers valid names
     DA_LAYERS_NAMES = ['arbol', 'taller',
