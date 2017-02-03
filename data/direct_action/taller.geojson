@@ -1,0 +1,45 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "fecha_creacion": "25/12/2016",
+        "foto": "test2.JPG",
+        "nombre": "Arbol 1",
+        "descripcion": "Maximo 140 caracteres",
+        "barrio": "centro",
+	"tipo": "taller",
+		"twit": "",
+		"face": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.37,
+          -33.14
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fecha_creacion": "25/12/2016",
+        "foto": "test2.JPG",
+        "nombre": "Arbol 2",
+        "descripcion": "Maximo 140 caracteres",
+        "barrio": "centro",
+	"tipo": "taller",
+		"twit": "",
+		"face": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.36,
+          -33.14
+        ]
+      }
+    }
+  ]
+}

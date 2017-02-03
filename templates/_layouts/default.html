@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+    <header class="header-hidden">
+      <h1>{% if page.h1 %} {{ page.h1 }} {% else %} Mapeo Colectivo {% endif %}</h1>
+    </header>
+
+    {% include nav-bar.html %}
+
+    {{ content }}
+
+    {% if site.debug %}
+    {% include toc.html %}
+    {% endif %}
+    {% include footer.html %}
+    {% include js_scripts.html %}
+
+  </body>
+
+</html>

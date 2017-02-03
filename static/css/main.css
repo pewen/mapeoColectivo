@@ -1,0 +1,404 @@
+/* Personal CSS */
+
+/* Authors: @fnbellomo
+ */
+
+/****************************************
+ * Base structure
+ ****************************************/
+body {
+    font-family: Helvetica, Arial;
+    position: relative;
+}
+
+.site-name {
+    font-family: 'Raleway', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-size: 14px;
+    line-height: 1.50;
+    color: #333333;
+    text-align: center;
+}
+
+ol, ul {
+    list-style: outside none none;
+}
+
+.list-icons {
+    padding: 0;
+    margin: 20px 0;
+    list-style: none;
+    font-size: 18px;
+}
+
+.list-icons li {
+    padding: 0 0 15px 0;
+}
+
+blockquote {
+    border-left: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.title {
+    margin-top: 0;
+}
+
+p {
+    line-height: 28px;
+    margin-bottom: 25px;
+}
+
+.header-hidden {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding:0 !important;
+    border:0 !important;
+    height: 1px !important; 
+    width: 1px !important; 
+    overflow: hidden;
+}
+/****************************************
+ * NavBar
+ ****************************************/
+.navbar-inverse {
+    background-color: #000;
+}
+
+.navbar-brand > img {
+    display: block;
+    max-width:250px;
+    margin-top: -10px;
+}
+
+.navbar-brand > img.visible-xs{
+    display: block;
+    max-width:200px;
+    margin-top: -10px;
+    
+}
+
+.navbar-nav{
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed;
+    float:none;
+}
+
+.navbar-custom {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.navbar-nav > li > a {
+    font-weight: bold;
+}
+
+/****************************************
+ * Buttons
+ ****************************************/
+.btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    min-width: 100px;
+    text-align: center;
+    border-radius: 0;
+    text-transform: uppercase;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-default {
+    color: #55acee;
+    border: 1px solid #cccccc;
+}
+
+.btn-default:hover {
+    color: #ffffff;
+    background-color: #339BEB;
+    border-color: #339BEB;
+}
+
+.btn-online {
+    font-size: 20px;
+}
+
+.btn-success {
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10%;
+    white-space:normal !important;
+    max-width:100px;
+    box-shadow: 3px 3px 5px #000;
+}
+/****************************************
+ * Box
+ ***************************************/
+.box-def {
+    background: #FFF none repeat scroll 0% 0%;
+    box-shadow: 3px 4px 15px -6px #000;
+    padding: 20px 25px;
+    position: relative;
+}
+
+.box-def h1 {
+    color: #292636;
+    font-size: 35px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.3em;
+    margin: 0px 0px 20px;
+    border-bottom: 1px solid #D4DFF6;
+    padding: 0px 15px 18px;
+}
+
+.box-def p {
+    color: #87818C;
+    font-size: 19px;
+    letter-spacing: -0.02em;
+    line-height: 1.6em;
+    padding: 0px 15px;
+    text-align: justify;
+}
+
+/****************************************
+ * Banner
+ ***************************************/
+#banner {
+    background: linear-gradient(to top, rgba(46, 49, 65, 0.7), rgba(46, 49, 65, 0.7)), url("../imgs/banner.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    color: #ffffff;
+}
+
+#banner > div {
+    padding-top: 15%;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+#banner h2 {
+    border-bottom: solid 2px rgba(255, 255, 255, 0.125);
+    padding-bottom: 15px;
+    font-size: 2.25em;
+}
+
+/****************************************
+ * Point information
+ ***************************************/
+.pointInfo {
+    position: absolute;
+    width: 0;
+    z-index: 1000;
+    transition: 0.5s;
+    padding: 0px;
+    background-color: white;
+}
+
+@media only screen and (min-width : 768px) {
+    .pointInfo-Size {
+	width: 33.33%;
+    }
+}
+
+@media only screen and (min-width : 992px) {
+    .pointInfo-Size {
+	width: 25%;
+    }
+}
+
+.entry-social {
+    padding-bottom: 40px;
+}
+
+.entry-social a {
+    border: 1px solid #DEDEDE;
+    float: left;
+    font-size: 15px;
+    margin: 0px 5px 5px 0px;
+    padding: 8px 0px;
+    text-align: center;
+    width: 38px;
+    transition: all 0.2s ease-in-out;
+}
+
+.entry-share a {
+    width: 100px;
+    border: 0px none;
+}
+
+.entry-share a:hover {
+    color:#212121;
+}
+
+.entry-social li.twitter a:hover {
+    color: #55acee;
+}
+
+.entry-social li.facebook a:hover {
+    color: #3b5998;
+}
+
+/****************************************
+ * map legend
+ ***************************************/
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    text-align: left;
+}
+
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin-right: 8px;
+    opacity: 1;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+
+.legend span{
+  text-transform: capitalize
+}
+
+/****************************************
+ * Mapeo ciudadano
+ ***************************************/
+#map {
+    height: 100vh;
+    width: 100vw;
+}
+
+.leaflet-bar button:last-of-type {
+    width: 100px;
+}
+
+.leaflet-bar button:last-of-type:hover {
+    width: 100px;
+}
+
+
+.pointHeader {
+    background-color: #489fdf;
+    color: white;
+    padding-bottom: 20px;
+}
+
+.pointHeader h3 {
+    text-align: center;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    font-family: "Playfair Display";
+    font-weight: bold;
+}
+
+.pointTags {
+    border-top: 1px solid rgb(238, 238, 238);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    font-size: 12px;
+}
+
+.pointTags span {
+    font-family: "Playfair Display";
+    text-transform: uppercase;
+}
+
+.pointText {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+/****************************************
+ * Footer
+ ***************************************/
+footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #000;
+    color: #fff;
+    text-align: left;
+    font-size: 12px;
+}
+
+footer strong {
+    color: #e62b1e;
+}
+
+.footer-title {
+    border-bottom: solid 2px rgba(255, 255, 255, 0.125);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.footer-title h3 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.footer-title p {
+    margin-bottom: 0px;
+}
+
+.social-links {
+    padding: 0;
+    list-style: none;
+    margin: 15px 0;
+    text-align: right;
+}
+
+.social-links li {
+    margin: 10px 25px 10px 0;
+    display: inline-block;
+    font-size: 36px;
+}
+
+.social-links li a {
+    color: #fff;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.social-links li.twitter a:hover {
+    color: #55acee;
+}
+
+.social-links li.github a:hover {
+    color: #4078c0;
+}
+
+.social-links li.email a:hover {
+    color: #b31217;
+}
+
+
+.footer-firm {
+    text-align: center;
+}
+

@@ -1,0 +1,252 @@
+---
+layout: default
+title: Mapeo Ciudadano
+h1: Mapeo Ciudadano
+
+type_new_point:
+  - Seleccionar
+  - Micro basural
+  - Bache
+  - Árbol Peligroso
+  - Iluminación
+  - Agua Cloaca
+  - Obra Inconclusa
+  - Inundación
+  - Otro
+---
+
+<!-- Banner -->
+<!-- ====== -->
+<section id="banner">
+  <div class="container">
+    <h2>Mapeo Ciudadano</h2>
+  </div><!--/container -->
+</section><!--#banner -->
+
+
+<!-- Mapa -->
+<!-- ==== -->
+<section>
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- Point information -->
+      <div id="info" class="pointInfo header-hidden">
+
+	<header class="pointHeader">
+	  <img id="pointImg" class="img-responsive" src=""
+	       onclick="expandImage('spam', 'imgs/test2.JPG')" />
+	  <h3 id="pointName"></h3>
+	</header>
+
+	<div class="entry-social">
+	  <ul>
+	    <li class="entry-share">
+	      <a style="text-decoration: none;">
+		COMPARTI:
+	      </a>
+	    </li><!--/entry-share -->
+	    <li class="facebook">
+	      <a id="faceLink" href="#" target="_blank">
+		<div class="header-hidden">
+		  Compartí el post mediante facebook
+		</div>
+		<i class="fa fa-facebook"></i>
+	      </a>
+	    </li><!--/facabook -->
+	    <li class="twitter">
+	      <a id="twittLink" href="" target="_blank">
+		<div class="header-hidden">
+		  Compartí el post mediante twitter
+		</div>
+		<i class="fa fa-twitter"></i>
+	      </a>
+	    </li><!--/twitter -->
+	  </ul>
+	</div><!--entry-social -->
+	
+	<div class="pointTags">
+	  <span id="pointType"></span></br>
+	  <span id="pointDate"></span>
+	</div><!--/ -->
+
+	<div class="pointText">
+	  <p id="pointDescription"></p>
+	</div><!--/pointText -->
+
+      </div><!--/#pointInfo -->
+
+      <!-- Map -->
+      <div id="mapDiv" class="col-sm-12" style="padding: 0px;">
+	<div id="map"></div>
+      </div><!--/col-sm-8 -->
+
+    </div><!--/row -->
+  </div><!--/container -->
+</section>
+
+
+
+<!-- New Point Modal -->
+<!-- =============== -->
+<div class="modal fade" id="newPointModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+		aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+        <h4 class="modal-title" id="myModalLabel">Agregar un nuevo Punto</h4>
+      </div><!--/modal-header -->
+
+      <!-- Body-->
+      <div class="modal-body">
+        <p>Muchas Gracias por reportar un nuevo incidente.</p>
+
+	<div id="formErrors"></div>
+	<hr></hr>
+
+	<form>
+	  <div class="form-horizontal">
+
+	    <!-- Form Titulo -->
+	    <div class="form-group">
+	      <label for="titleInput" class="col-xs-3 col-sm-3 control-label">
+		Titulo:
+	      </label>
+	      <div class="col-xs-9 col-sm-9">
+		<input type="email" class="form-control" id="titleInput"
+		       placeholder="Titulo descriptivo del evento">
+	      </div><!--/col-sm-3 -->
+	    </div><!--/form-group -->
+
+	    <!-- Coordinates -->
+	    <div class="form-group">
+	      <div class="col-xs-offset-3 col-sm-offset-3 col-xs-9 col-sm-9">
+		<div id="coordinatesInput"> </div>
+	      </div><!--/col-sm-3 -->
+	    </div><!--/form-group -->	  
+	    
+	    <!-- Form Foto -->
+	    <div class="form-group">
+	      <div class="col-xs-offset-3 col-sm-offset-3 col-xs-9 col-sm-9">
+		<input id="fileElem" type="file" accept="image/*"
+		       style="display:none" onchange="getFile(this.files)">
+		<button id="fileSelect" class="btn btn-default" type="submit">
+		  Tomar Foto
+		</button>
+
+	      </div><!--/col-sm-3 -->
+	    </div><!--/form-group -->
+
+	    <!-- Form Tipo -->
+	    <div class="form-group">
+	      <label for="typeInput" class="col-xs-3 col-sm-3 control-label">
+		Tipo:
+	      </label>
+	      <div class="col-xs-9 col-sm-9">
+		<select class="form-control" id="typeInput">
+		  {% for type in page.type_new_point %}
+		  <option>{{ type }}</option>
+		  {% endfor %}
+		</select>
+	      </div><!--/col-sm-3 -->
+	    </div><!--/form-group -->
+
+	    <!-- Form Barrio -->
+	    <div class="form-group">
+	      <label for="districtInput" class="col-xs-3 col-sm-3 control-label">
+		Barrio:
+	      </label>
+	      <div class="col-xs-9 col-sm-9">
+		<input type="email" class="form-control" id="districtInput"
+		       placeholder="Nombre del barrio">
+	      </div><!--/col-sm-3 -->
+	    </div><!--/form-group -->
+
+	    <!-- Form Descripccion -->
+	    <div class="form-group">
+	      <label for="descriptionInput"
+		     class="col-xs-3 col-sm-3 control-label">
+		Resumen:
+	      </label>
+	      <div class="col-xs-9 col-sm-9">
+		<textarea class="form-control" rows="3" id="abstractInput"></textarea>
+	      </div><!--/col-sm-2 -->
+	    </div><!--/form-group -->
+
+	    <!-- Progress bar -->
+	    <div class="progress" style="margin-top: 10px;">
+	      <div id="progressPrcent" class="progress-bar" role="progressbar"
+		   aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+		   style="width: 0%;">
+		0%
+	      </div><!--/#progressPrcent -->
+	    </div><!--/progress -->
+	    
+	  </div><!--/form-horizontal -->
+	</form>
+	
+      </div><!--/modal-body -->
+
+      <!-- Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+	  Cerrar
+	</button>
+        <button type="button" class="btn btn-primary" onclick="summitNewPoint()">
+	  Agregar
+	</button>
+      </div><!--/modal-footer -->
+      
+    </div><!--/modal-content -->
+  </div><!--/modal-dialog -->
+</div><!--/modal -->
+
+<!-- JS Libraries -->
+<!-- ============ -->
+<!-- Bootstrap-dialog.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
+<!-- Leafleat.JS -->
+<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+<!-- Leaflet.ajax.JS -->
+<script src="https://raw.githubusercontent.com/calvinmetcalf/leaflet-ajax/master/dist/leaflet.ajax.min.js"></script>
+<!--! Leaflet.EasyButton.JS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
+<script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
+
+{% raw %}
+<script>
+  var layersNames = {{ layersNames  | safe }};
+</script>
+{% endraw %}
+
+<!-- Personals scripts -->
+<!-- ================= -->
+<!-- Create the map -->
+<script src="static/js/createMap.js"></script>
+<!-- Get geoPosition of the user -->
+<script src="static/js/geoPosition.js"></script>
+<!-- Summit the new point -->
+<script src="static/js/summitNewPoint.js"></script>
+<!-- Resposive Map -->
+<script src="static/js/responsiveMap.js"></script>
+
+<script src="static/js/expandImage.js"></script>
+
+
+<script>
+  $('body').on('touchmove', function(e){
+  if($('.scroll-disable').has($(e.target)).length) e.preventDefault();
+  });
+  $('body').on('shown.bs.modal', function(){
+  $(this).addClass('scroll-disable');
+  });
+  $('body').on('hidden.bs.modal', function(){
+  $(this).removeClass('scroll-disable');
+  });
+</script>

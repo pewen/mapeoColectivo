@@ -1,0 +1,45 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "fecha_creacion": "25/12/2016",
+        "foto": "test2.JPG",
+        "nombre": "Pub 1",
+        "descripcion": "Maximo 140 caracteres",
+        "barrio": "centro",
+	"tipo": "intervencion publica",
+		"twit": "",
+		"face": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.35,
+          -33.13
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fecha_creacion": "25/12/2016",
+        "foto": "test2.JPG",
+        "nombre": "Pub 2",
+        "descripcion": "Maximo 140 caracteres",
+        "barrio": "centro",
+	"tipo": "intervencion publica",
+		"twit": "",
+		"face": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.34,
+          -33.13
+        ]
+      }
+    }
+  ]
+}

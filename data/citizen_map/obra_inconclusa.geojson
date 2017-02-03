@@ -1,0 +1,41 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "fecha_creacion": "25/12/2016",
+        "foto": "test2.JPG",
+        "nombre": "bache de mierda",
+        "descripcion": "Maximo 140 caracteres",
+        "barrio": "centro",
+	"tipo": "obra inconclusa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.40,
+          -33.13
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fecha_creacion": "25/12/2016",
+        "foto": "test2.JPG",
+        "nombre": "bache de mierda",
+        "descripcion": "Maximo 140 caracteres",
+        "barrio": "centro",
+	"tipo": "obra inconclusa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.40,
+          -33.12
+        ]
+      }
+    }
+  ]
+}

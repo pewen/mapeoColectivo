@@ -1,0 +1,28 @@
+<!-- Navigation Bar -->
+<!-- ============== -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <header class="header-hidden">
+    <h2>Menú de Navegación</h2>
+  </header>
+
+  <div class="container-fluid" style="padding-top: 10px; padding-bottom: 10px;">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div><!--/ navbar-header -->
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="{{ "#banner" | prepend: site.baseurl }}">INICIO</a></li>
+        <li><a href="{{ "/accionDirecta" | prepend: site.baseurl }}">ACCIÓN DIRECTA</a></li>
+        <li><a href="{{ "/mapeoCiudadano" | prepend: site.baseurl }}">MAPEO CIUDADANO</a></li>
+	<li><a href="{{ "/historico" | prepend: site.baseurl }}">HISTÓRICO</a></li>
+	<li id="loginButton" class="header-hidden"><a href="{{ "/login" | prepend: site.apiUrl }}">LOGIN</a></li>
+	<li id="logoutButton" class="header-hidden"><a href="{{ "/logout" | prepend: site.apiUrl }}">LOOUT</a></li>
+      </ul>
+    </div><!--/ collapse navbar-collapse -->
+  </div><!--/ container-fluid -->
+</nav>
