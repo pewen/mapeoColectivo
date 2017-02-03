@@ -10,9 +10,11 @@ function logInOut(){
     var isDirectAction = window.location.href.indexOf("/accionDirecta") > -1;
 
     // Button to add new point
-    var map = document.getElementById("map");
-    var buttonClass = "leaflet-bar easy-button-container leaflet-control";
-    var button = map.getElementsByClassName(buttonClass)[0];
+    if (isDirectAction) {
+	var map = document.getElementById("map");
+	var buttonClass = "leaflet-bar easy-button-container leaflet-control";
+	var button = map.getElementsByClassName(buttonClass)[0];
+    }
     
     if (getCookie("status")) {
 	// Is loggin
