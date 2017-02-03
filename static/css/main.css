@@ -101,6 +101,20 @@ p {
     font-weight: bold;
 }
 
+.navbar-button {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: rgb(157, 157, 157);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.navbar-button:hover {
+    color: #fff;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 /****************************************
  * Buttons
  ****************************************/

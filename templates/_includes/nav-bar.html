@@ -20,8 +20,8 @@
         <li><a href="{{ "/accionDirecta" | prepend: site.baseurl }}">ACCIÓN DIRECTA</a></li>
         <li><a href="{{ "/mapeoCiudadano" | prepend: site.baseurl }}">MAPEO CIUDADANO</a></li>
 	<li><a href="{{ "/historico" | prepend: site.baseurl }}">HISTÓRICO</a></li>
-	<li id="loginButton" class="header-hidden"><a href="{{ "/login" | prepend: site.apiUrl }}">LOGIN</a></li>
-	<li id="logoutButton" class="header-hidden"><a href="{{ "/logout" | prepend: site.apiUrl }}">LOOUT</a></li>
+	<li id="loginButton" class="navbar-button header-hidden" onclick="logIn()">LOGIN</li>
+	<li id="logoutButton" class="navbar-buttonheader-hidden" onclick="logOut()">LOGOUT</li>
       </ul>
     </div><!--/ collapse navbar-collapse -->
   </div><!--/ container-fluid -->

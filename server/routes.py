@@ -87,12 +87,23 @@ def login():
     """
     Login via twitter
 
+    Parameters
+    ----------
+    return_to: str
+      Url to return after login
+
     TODO:
     ----
     * Login via facebook
-    * Guardar la url de la que viene para volver a la misma
     """
-    callback_url = url_for('oauthorized', next=request.args.get('next'))
+    next_url = request.args.get('next')
+
+    allowed_routes = ['accionDirecta', 'mapeoCiudadano',
+                      'historico']
+    if next_url not in allowed_routes:
+        next_url = ''
+
+    callback_url = url_for('oauthorized', next=next_url)
     return twitter.authorize(callback=callback_url or
                              request.referrer or None)
 
@@ -106,7 +117,14 @@ def logout():
     ----
     * Guardar la url de la que viene para volver a la misma
     """
-    response = current_app.make_response(redirect('/accionDirecta'))
+    next_url = request.args.get('next')
+
+    allowed_routes = ['accionDirecta', 'mapeoCiudadano',
+                      'historico']
+    if next_url not in allowed_routes:
+        next_url = '/'
+
+    response = current_app.make_response(redirect(next_url))
 
     # Remove all the cookies
     response.set_cookie('status', '', expires=0)
@@ -124,6 +142,8 @@ def oauthorized():
     * check if the facebook user have the coorect permission
     * retornar a la ultima pagina que visito el usuario antes del login
     """
+    next_url = request.args.get('next') or '/'
+
     resp = twitter.authorized_response()
 
     if resp is None:
@@ -144,7 +164,7 @@ def oauthorized():
 
     flash('You were successfully logged in')
 
-    response = current_app.make_response(redirect("/accionDirecta"))
+    response = current_app.make_response(redirect(next_url))
     response.set_cookie('status', value=generate_random_id())
     return response
 
@@ -163,13 +183,15 @@ def home():
 @app.route('/accionDirecta')
 def accion_directa():
     return render_template("accionDirecta.html",
-                           layersNames=app.config['DA_LAYERS_NAMES'])
+                           layersNames=app.config['DA_LAYERS_NAMES'],
+                           serverUrl=app.config['SERVER_URL'])
 
 
 @app.route('/mapeoCiudadano')
 def mapeo_ciudadano():
     return render_template("mapeoCiudadano.html",
-                           layersNames=app.config['CM_LAYERS_NAMES'])
+                           layersNames=app.config['CM_LAYERS_NAMES'],
+                           serverUrl=app.config['SERVER_URL'])
 
 
 @app.route('/historico')
@@ -206,7 +228,8 @@ def da_data(layer_name):
 @app.route('/direct_action/new_point', methods=['POST'])
 def da_new_point():
     """
-    Add a new point to direct action map
+    Add a new point to direct action map.
+    Only allowed user can do this.
 
     Parameters
     ----------
@@ -330,9 +353,94 @@ def citizen_data(layer_name):
 @app.route('/citizen_map/new_point', methods=['POST'])
 def citizen_new_point():
     """
+    Add a new point to direct action map
 
+    Parameters
+    ----------
+
+    Errors
+    ------
+    401: user dont have permission to make post
+    400: the image is empty
+    400: Invalid type of image
     """
-    pass
+    # Data of the point: title, day, etc
+    data = request.files['data'].read()
+    data = eval(data)
+
+    # Photo
+    file = FileStorage(request.files['photo'])
+    filename = secure_filename(request.files['photo'].filename)
+
+    # Diferents check of the data and image
+
+    # Invalid coordinates
+    """
+    if data['latitud'] == 0:
+        print("Error: latitud invalida")
+        abort(400, "Invalid latitude")
+    if data['longitud'] == 0:
+        print("Error: longitud invalida")
+        abort(400, "Invalid longitude")
+    """
+
+    # Empty file
+    if filename == '':
+        print('Error: no archivo')
+        abort(400, "The image is empty")
+
+    # Invalid image extention
+    if not allowed_file(filename):
+        print("Error: Tipo de imagen invalida")
+        abort(400, "Invalid type of image")
+    elif not file:
+        print("Error: Tipo de imagen invalida")
+        abort(400, "Invalid type of image")
+
+    # Invalid data layer
+    if data['tipo'] not in app.config['DA_LAYERS_NAMES']:
+        print("Error: Nombre de capa invalido")
+        abort(400, "Invalid layer name")
+
+    # Open the geojson dataframe
+    data_path = app.config['CM_FOLDER'] + data['tipo'] + '.geojson'
+    df = read4json(data_path)
+
+    # The image is correct and can save
+    amount_type = len(df['features']) + 1
+    filename = data['tipo'] + '_' + str(amount_type) + '.jpeg'
+    path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    file.save(path)
+
+    # Save the now point to geojson file
+    point = {
+        "type": "Feature",
+        "properties": {
+            "fecha_creacion": strftime("%Y-%m-%d %H:%M:%S", gmtime()),
+            "foto": filename,
+            "nombre": data['titulo'],
+            "descripcion": data['resumen'],
+            "barrio": data['barrio'],
+            "tipo": data['tipo'].replace("_", " "),
+            "twit": "",
+            "face": ""
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                data['latitud'],
+                data['longitud']
+            ]
+        }
+    }
+
+    df['features'].append(point)
+    save2json(data_path, df)
+
+    # Update the message
+    create_menssage("direct_action", data['tipo'])
+
+    return jsonify('201')
 
 
 """

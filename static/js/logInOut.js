@@ -19,7 +19,7 @@ function logInOut(){
     if (getCookie("status")) {
 	// Is loggin
 	loginButton.className = "header-hidden";
-	logoutButton.className = "";
+	logoutButton.className = "navbar-button";
 
 	if (isDirectAction) {
 	    button.className = buttonClass;
@@ -27,7 +27,7 @@ function logInOut(){
     }
     else {
 	// Is not login
-	loginButton.className = "";
+	loginButton.className = "navbar-button";
 	logoutButton.className = "header-hidden";
 
 	if (isDirectAction){
@@ -39,3 +39,23 @@ function logInOut(){
 window.onload = function() {
     logInOut();
 };
+
+
+function logIn() {
+    var url = window.location.href;
+    var urlSplit = url.split('/');
+    var next = urlSplit[urlSplit.length -1 ];
+
+    var logInUrl = "http://127.0.0.1:5000/login?next=" + next;
+    window.location = logInUrl;
+}
+
+
+function logOut() {
+    var url = window.location.href;
+    var urlSplit = url.split('/');
+    var next = urlSplit[urlSplit.length -1 ];
+
+    var logOutUrl = "http://127.0.0.1:5000/logout?next=" + next;
+    window.location = logOutUrl;
+}
