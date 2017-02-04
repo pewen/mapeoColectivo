@@ -92,7 +92,7 @@ function summitNewPoint() {
     xhr.addEventListener("load", transferComplete);
     xhr.addEventListener("error", transferFailed);
 
-    postUrl = serverurl + "direct_action/new_point"
+    postUrl = serverUrl + "direct_action/new_point"
     xhr.open("POST", postUrl);
     xhr.overrideMimeType('multipart/form-data');
     
