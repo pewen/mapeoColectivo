@@ -290,9 +290,15 @@ def da_new_point():
     data_path = app.config['DA_FOLDER'] + data['tipo'] + '.geojson'
     df = read4json(data_path)
 
+    # get the unic point id
+    if len(df['features']) == 0:
+        point_id = 0
+    else:
+        last_id = df['features'][-1]['properties']['id']
+        point_id = last_id + 1
+
     # The image is correct and can save
-    amount_type = len(df['features']) + 1
-    filename = data['tipo'] + '_' + str(amount_type) + '.jpeg'
+    filename = data['tipo'] + '_' + str(point_id) + '.jpeg'
     path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     file.save(path)
 
@@ -308,7 +314,8 @@ def da_new_point():
             "tipo": data['tipo'].replace("_", " "),
             "twit": "",
             "face": "",
-            "valido": True
+            "valido": True,
+            "id": point_id
         },
         "geometry": {
             "type": "Point",

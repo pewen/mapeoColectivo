@@ -12,7 +12,8 @@
 	"tipo": "taller",
 		"twit": "",
 		"face": "",
-		"valido": true
+		"valido": true,
+		"id":0
       },
       "geometry": {
         "type": "Point",
@@ -33,7 +34,8 @@
 	"tipo": "taller",
 		"twit": "",
 		"face": "",
-		"valido": true
+		"valido": true,
+		"id":1
       },
       "geometry": {
         "type": "Point",

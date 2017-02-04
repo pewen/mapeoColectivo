@@ -1,47 +1,71 @@
 {
+    "type": "FeatureCollection",
     "features": [
         {
+            "properties": {
+                "descripcion": "Maximo 140 caracteres",
+                "twit": "https://twitter.com/intent/tweet?text=Un+nuevo+\u00e1rbol+plantado.+Ya+van+3:&url=https://pewen.github.io&hashtags=Mas\u00c1rboles",
+                "id": 0,
+                "barrio": "centro",
+                "face": "",
+                "valido": true,
+                "tipo": "arbol",
+                "foto": "test2.JPG",
+                "fecha_creacion": "25/12/2016",
+                "nombre": "Arbol 1"
+            },
             "geometry": {
-                "type": "Point",
                 "coordinates": [
                     -64.39,
                     -33.15
-                ]
+                ],
+                "type": "Point"
             },
-            "type": "Feature",
-            "properties": {
-                "fecha_creacion": "25/12/2016",
-                "barrio": "centro",
-                "foto": "test2.JPG",
-                "descripcion": "Maximo 140 caracteres",
-                "nombre": "Arbol 1",
-                "tipo": "arbol",
-                "twit": "https://twitter.com/intent/tweet?text=Un+nuevo+\u00e1rbol+plantado.+Ya+van+4:&url=https://pewen.github.io&hashtags=Mas\u00c1rboles",
-		"face": "",
-		"valido": true
-            }
+            "type": "Feature"
         },
         {
+            "properties": {
+                "descripcion": "Maximo 140 caracteres",
+                "twit": "https://twitter.com/intent/tweet?text=Un+nuevo+\u00e1rbol+plantado.+Ya+van+3:&url=https://pewen.github.io&hashtags=Mas\u00c1rboles",
+                "id": 1,
+                "barrio": "centro",
+                "face": "",
+                "valido": true,
+                "tipo": "arbol",
+                "foto": "test2.JPG",
+                "fecha_creacion": "25/12/2016",
+                "nombre": "Arbol 2"
+            },
             "geometry": {
-                "type": "Point",
                 "coordinates": [
                     -64.39,
                     -33.13
-                ]
+                ],
+                "type": "Point"
             },
-            "type": "Feature",
+            "type": "Feature"
+        },
+        {
             "properties": {
-                "fecha_creacion": "25/12/2016",
-                "barrio": "centro",
-                "foto": "test2.JPG",
-                "descripcion": "Maximo 140 caracteres",
-                "nombre": "Arbol 2",
+                "descripcion": "\t\tasa",
+                "twit": "https://twitter.com/intent/tweet?text=Un+nuevo+\u00e1rbol+plantado.+Ya+van+3:&url=https://pewen.github.io&hashtags=Mas\u00c1rboles",
+                "fecha_creacion": "2017-02-04 22:36:13",
+                "id": 2,
+                "face": "",
+                "valido": true,
                 "tipo": "arbol",
-                "twit": "https://twitter.com/intent/tweet?text=Un+nuevo+\u00e1rbol+plantado.+Ya+van+4:&url=https://pewen.github.io&hashtags=Mas\u00c1rboles",
-		"face": "",
-		"valido": true
-            }
+                "foto": "arbol_2.jpeg",
+                "nombre": "spma",
+                "barrio": "asa"
+            },
+            "geometry": {
+                "coordinates": [
+                    0,
+                    0
+                ],
+                "type": "Point"
+            },
+            "type": "Feature"
         }
-    ],
-    "type": "FeatureCollection"
+    ]
 }

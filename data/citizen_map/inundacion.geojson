@@ -10,7 +10,8 @@
         "descripcion": "Maximo 140 caracteres",
         "barrio": "centro",
 	"tipo": "inundacion",
-	"valido": true
+	"valido": true,
+	"id":0
       },
       "geometry": {
         "type": "Point",
@@ -29,7 +30,8 @@
         "descripcion": "Maximo 140 caracteres",
         "barrio": "centro",
 	"tipo": "inundacion",
-	"valido": true
+	"valido": true,
+	"id":1
       },
       "geometry": {
         "type": "Point",

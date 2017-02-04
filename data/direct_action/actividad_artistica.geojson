@@ -18,7 +18,8 @@
                 "nombre": "Arti 1",
 		"twit": "",
 		"face": "",
-		"valido": true
+		"valido": true,
+		"id":0
             }
         },
         {
@@ -39,7 +40,8 @@
                 "nombre": "Arti 2",
 		"twit": "",
 		"face": "",
-		"valido": true
+		"valido": true,
+		"id":1
             }
         },
         {
@@ -60,7 +62,8 @@
                 "nombre": "Algun titulo",
 		"twit": "",
 		"face": "",
-		"valido": true
+		"valido": true,
+		"id":2
             }
         }
     ],
