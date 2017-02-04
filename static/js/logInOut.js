@@ -46,7 +46,7 @@ function logIn() {
     var urlSplit = url.split('/');
     var next = urlSplit[urlSplit.length -1 ];
 
-    var logInUrl = "http://127.0.0.1:5000/login?next=" + next;
+    var logInUrl = serverUrl + "login?next=" + next;
     window.location = logInUrl;
 }
 
@@ -56,6 +56,6 @@ function logOut() {
     var urlSplit = url.split('/');
     var next = urlSplit[urlSplit.length -1 ];
 
-    var logOutUrl = "http://127.0.0.1:5000/logout?next=" + next;
+    var logOutUrl = serverUrl + "logout?next=" + next;
     window.location = logOutUrl;
 }
