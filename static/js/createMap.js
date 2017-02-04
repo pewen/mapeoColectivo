@@ -89,15 +89,28 @@ legend.addTo(map);
 
 // Point style
 function pointToLayer(feature, latlng) {
-    var style = {
-	radius: 8,
-	fillColor: layersColors[feature.properties.tipo],
-	color: "#000",
-	weight: 1,
-	opacity: 1,
-	fillOpacity: 0.8
-    };
-    return L.circleMarker(latlng, style);
+    if (feature.properties.valido) {
+	var style = {
+	    radius: 8,
+	    fillColor: layersColors[feature.properties.tipo],
+	    color: "#000",
+	    weight: 1,
+	    opacity: 1,
+	    fillOpacity: 0.8
+	};
+	
+	return L.circleMarker(latlng, style);
+    }
+    else {
+	var redMarker = L.ExtraMarkers.icon({
+	    icon: 'fa-check',
+	    markerColor: 'red',
+	    shape: 'square',
+	    prefix: 'fa'
+	});
+
+	return L.marker(latlng, {icon: redMarker,});
+    }
 }
 
 // Load the data with the personal point style

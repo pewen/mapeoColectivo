@@ -17,7 +17,8 @@
                 "barrio": "centro",
                 "nombre": "Arti 1",
 		"twit": "",
-		"face": ""
+		"face": "",
+		"valido": true
             }
         },
         {
@@ -37,7 +38,8 @@
                 "barrio": "centro",
                 "nombre": "Arti 2",
 		"twit": "",
-		"face": ""
+		"face": "",
+		"valido": true
             }
         },
         {
@@ -57,7 +59,8 @@
                 "barrio": "alguno barrio",
                 "nombre": "Algun titulo",
 		"twit": "",
-		"face": ""
+		"face": "",
+		"valido": true
             }
         }
     ],

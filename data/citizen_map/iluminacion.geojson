@@ -9,7 +9,8 @@
         "nombre": "bache de mierda",
         "descripcion": "Maximo 140 caracteres",
         "barrio": "centro",
-	"tipo": "iluminacion"
+	"tipo": "iluminacion",
+	"valido": true
       },
       "geometry": {
         "type": "Point",
@@ -27,7 +28,8 @@
         "nombre": "bache de mierda",
         "descripcion": "Maximo 140 caracteres",
         "barrio": "centro",
-	"tipo": "iluminacion"
+	"tipo": "iluminacion",
+	"valido": true
       },
       "geometry": {
         "type": "Point",

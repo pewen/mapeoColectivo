@@ -11,7 +11,8 @@
         "barrio": "centro",
 	"tipo": "intervencion publica",
 		"twit": "",
-		"face": ""
+		"face": "",
+		"valido": true
       },
       "geometry": {
         "type": "Point",
@@ -31,7 +32,8 @@
         "barrio": "centro",
 	"tipo": "intervencion publica",
 		"twit": "",
-		"face": ""
+		"face": "",
+		"valido": true
       },
       "geometry": {
         "type": "Point",

@@ -220,11 +220,12 @@ def da_data(layer_name):
     """
     data_path = app.config['DA_FOLDER'] + layer_name + '.geojson'
 
-    if layer_name in app.config['DA_LAYERS_NAMES']:
-        data = read4json(data_path)
-        return jsonify(data)
-    else:
+    # Invalid layer name
+    if layer_name not in app.config['DA_LAYERS_NAMES']:
         return jsonify({})
+
+    data = read4json(data_path)
+    return jsonify(data)
 
 
 @app.route('/direct_action/new_point', methods=['POST'])
@@ -306,7 +307,8 @@ def da_new_point():
             "barrio": data['barrio'],
             "tipo": data['tipo'].replace("_", " "),
             "twit": "",
-            "face": ""
+            "face": "",
+            "valido": True
         },
         "geometry": {
             "type": "Point",
@@ -333,7 +335,7 @@ Citizen map routes
 
 
 @app.route('/citizen_map/layer/<layer_name>', methods=['GET'])
-def citizen_data(layer_name):
+def citizen_map(layer_name):
     """
     Get a geoJson data layer for citizen map.
     If the 'layer_name' dont exist, return an empty json
@@ -345,11 +347,25 @@ def citizen_data(layer_name):
     """
     data_path = app.config['CM_FOLDER'] + layer_name + '.geojson'
 
-    if layer_name in app.config['CM_LAYERS_NAMES']:
-        data = read4json(data_path)
-        return jsonify(data)
-    else:
+    # Invalid layer name
+    if layer_name not in app.config['CM_LAYERS_NAMES']:
         return jsonify({})
+
+    data = read4json(data_path)
+
+    # If the user is login, return all the data
+    if 'twitter_token' in session:
+        return jsonify(data)
+
+    # The user is not login. Only return valid points
+    valid_elements = []
+    for element in data['features']:
+        if element['properties']['valido']:
+            valid_elements.append(element)
+
+    data = {'type': 'FeatureCollection',
+            'features': valid_elements}
+    return jsonify(data)
 
 
 @app.route('/citizen_map/new_point', methods=['POST'])

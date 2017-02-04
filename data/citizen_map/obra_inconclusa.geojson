@@ -9,7 +9,8 @@
         "nombre": "bache de mierda",
         "descripcion": "Maximo 140 caracteres",
         "barrio": "centro",
-	"tipo": "obra inconclusa"
+	"tipo": "obra inconclusa",
+	"valido": false
       },
       "geometry": {
         "type": "Point",
@@ -27,7 +28,8 @@
         "nombre": "bache de mierda",
         "descripcion": "Maximo 140 caracteres",
         "barrio": "centro",
-	"tipo": "obra inconclusa"
+	"tipo": "obra inconclusa",
+	"valido": true
       },
       "geometry": {
         "type": "Point",
