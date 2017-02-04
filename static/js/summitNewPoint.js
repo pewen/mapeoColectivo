@@ -1,5 +1,5 @@
 // Reset the form
-$('form').each(function() { this.reset() });
+$('form').each(function() { this.reset(); });
 
 
 /*
@@ -114,7 +114,7 @@ function summitNewPoint() {
     }
 
     function transferComplete(evt) {
-	$('#newPointModal').modal('hide');
+	//$('#newPointModal').modal('hide');
 
 	if (xhr.readyState == 4) {
 	    if(xhr.status == 200)
