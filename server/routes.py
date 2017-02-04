@@ -177,7 +177,8 @@ Basic routes
 
 @app.route('/')
 def home():
-    return render_template("index.html")
+    return render_template("index.html",
+                           serverUrl=app.config['SERVER_URL'])
 
 
 @app.route('/accionDirecta')
@@ -196,7 +197,8 @@ def mapeo_ciudadano():
 
 @app.route('/historico')
 def historio():
-    return render_template("index.html")
+    return render_template("index.html",
+                           serverUrl=app.config['SERVER_URL'])
 
 
 """
