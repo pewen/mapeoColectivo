@@ -40,21 +40,23 @@ function geoErrorMenssage(message) {
      */
     BootstrapDialog.alert(message);
 }
-var latlong;
+
 function geoSuccess(position) {
     /*
       Sucess on getCurrentPosition()
      */
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
-
-    latlong = {'lat': latitude,
-	       'long': longitude};
-    
     var accuracy = position.coords.accuracy;
 
-    var coordText = document.getElementById('coordinatesInput');
-    coordText.innerHTML = 'Latitud: ' + latitude + ' Longitud : ' + longitude;
+    //var coordText = document.getElementById('coordinatesInput');
+    //coordText.innerHTML = 'Latitud: ' + latitude + ' Longitud : ' + longitude;
+
+    var latSpan = document.getElementById('lat');
+    var longSpan = document.getElementById('long');
+    latSpan.innerHTML = latitude;
+    longSpan.innerHTML = longitude;
+    
     $('#newPointModal').modal('show');
 }
 

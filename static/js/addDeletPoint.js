@@ -76,6 +76,11 @@ function newPoint() {
     var district = document.getElementById('districtInput').value;
     var abstact = document.getElementById('abstractInput').value;
 
+    var latSpan = document.getElementById('lat');
+    var longSpan = document.getElementById('long');
+    var lat = latSpan.innerHTML;
+    var longt = longSpan.innerHTML;
+    
     var notFillRequired = (title == "") || (layerName  == "") || (district == "");
     
     if (notFillRequired) {
@@ -91,8 +96,8 @@ function newPoint() {
 		       'tipo': correctName[layerName],
 		       'barrio': district,
 		       'resumen': abstact,
-		       'latitud': latlong['lat'],
-		       'longitud': latlong['long']}
+		       'latitud': lat,
+		       'longitud': longt}
 
     var formData = new FormData();
     var xhr = new XMLHttpRequest();

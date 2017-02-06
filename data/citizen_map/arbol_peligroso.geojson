@@ -1,45 +1,88 @@
 {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "fecha_creacion": "25/12/2016",
-        "foto": "test2.JPG",
-        "nombre": "bache de mierda",
-        "descripcion": "Maximo 140 caracteres",
-        "barrio": "centro",
-	"tipo": "arbol peligroso",
-	"valido": true,
-	"id":0
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -64.35,
-          -33.13
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "fecha_creacion": "25/12/2016",
-        "foto": "test2.JPG",
-        "nombre": "bache de mierda",
-        "descripcion": "Maximo 140 caracteres",
-        "barrio": "centro",
-	"tipo": "arbol peligroso",
-	"valido": true,
-	"id":1
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -64.34,
-          -33.12
-        ]
-      }
-    }
-  ]
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "valido": true,
+                "id": 0,
+                "foto": "test2.JPG",
+                "nombre": "bache de mierda",
+                "descripcion": "Maximo 140 caracteres",
+                "tipo": "arbol peligroso",
+                "fecha_creacion": "25/12/2016",
+                "barrio": "centro"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -64.35,
+                    -33.13
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "valido": true,
+                "id": 1,
+                "foto": "test2.JPG",
+                "nombre": "bache de mierda",
+                "descripcion": "Maximo 140 caracteres",
+                "tipo": "arbol peligroso",
+                "fecha_creacion": "25/12/2016",
+                "barrio": "centro"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -64.34,
+                    -33.12
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nombre": "Arbol de spam",
+                "foto": "arbol_peligroso_3.jpeg",
+                "face": "",
+                "descripcion": "",
+                "tipo": "arbol peligroso",
+                "fecha_creacion": "2017-02-06 21:02:11",
+                "barrio": "alguno",
+                "twit": "",
+                "id": 2
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -64.33,
+                    -33.13
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nombre": "Mas arboles",
+                "face": "",
+                "foto": "arbol_peligroso_4.jpeg",
+                "tipo": "arbol peligroso",
+                "descripcion": "",
+                "fecha_creacion": "2017-02-06 21:06:32",
+                "id": 3,
+                "barrio": "alguno 2",
+                "twit": "",
+                "valido": true
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -64.31,
+                    -33.14
+                ]
+            }
+        }
+    ]
 }

@@ -259,14 +259,12 @@ def da_new_point():
     # Diferents check of the data and image
 
     # Invalid coordinates
-    """
     if data['latitud'] == 0:
         print("Error: latitud invalida")
         abort(400, "Invalid latitude")
     if data['longitud'] == 0:
         print("Error: longitud invalida")
         abort(400, "Invalid longitude")
-    """
 
     # Empty file
     if filename == '':
@@ -320,8 +318,8 @@ def da_new_point():
         "geometry": {
             "type": "Point",
             "coordinates": [
-                data['latitud'],
-                data['longitud']
+                float(data['latitud']),
+                float(data['longitud'])
             ]
         }
     }
@@ -464,14 +462,12 @@ def citizen_new_point():
     # Diferents check of the data and image
 
     # Invalid coordinates
-    """
     if data['latitud'] == 0:
         print("Error: latitud invalida")
         abort(400, "Invalid latitude")
     if data['longitud'] == 0:
         print("Error: longitud invalida")
         abort(400, "Invalid longitude")
-    """
 
     # Empty file
     if filename == '':
@@ -501,6 +497,19 @@ def citizen_new_point():
     path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     file.save(path)
 
+    # If the user is login, the point is validate
+    if 'twitter_token' in session:
+        validate = True
+    else:
+        validate = False
+
+    # get the unic point id
+    if len(df['features']) == 0:
+        point_id = 0
+    else:
+        last_id = df['features'][-1]['properties']['id']
+        point_id = last_id + 1
+
     # Save the now point to geojson file
     point = {
         "type": "Feature",
@@ -512,13 +521,15 @@ def citizen_new_point():
             "barrio": data['barrio'],
             "tipo": data['tipo'].replace("_", " "),
             "twit": "",
-            "face": ""
+            "face": "",
+            "valido": validate,
+            "id": point_id
         },
         "geometry": {
             "type": "Point",
             "coordinates": [
-                data['latitud'],
-                data['longitud']
+                float(data['latitud']),
+                float(data['longitud'])
             ]
         }
     }
