@@ -7,4 +7,4 @@ if sys.version_info[0]<3:       # require python3
  raise Exception("Python3 required! Current (wrong) version: '%s'" % sys.version_info)
 
 sys.path.insert(0, '/var/lib/openshift/58933b282d52719ef8000033/app-root/repo/')
-from server import app as application
+from server.routes import app as application
