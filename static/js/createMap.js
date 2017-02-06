@@ -211,28 +211,6 @@ for (name of layersNames) {
     });
 }
 
-
-function showPointInfo() {
-    /*
-      Show the extend point info
-     */
-    var pointInfo = document.getElementById("info");
-    var map = document.getElementById("map");
-
-    pointInfo.style.height = map.style.height;
-    pointInfo.className = "pointInfo pointInfo-Size";
-}
-
-function hidePointInfo() {
-    /*
-      Hide the point info
-     */
-    var pointInfo = document.getElementById("info");
-    pointInfo.className = "pointInfo header-hidden";
-    pointInfo.style.width = "0%";
-}
-
-
 function hideShowLayer(name) {
     /*
       Hide show a layer
@@ -247,3 +225,41 @@ function hideShowLayer(name) {
 	map.addLayer(layers[name]);
     }
 }
+
+
+function showPointInfo() {
+    /*
+      Show the extend point info
+     */
+    var pointInfo = document.getElementById("info");
+    var map = document.getElementById("map");
+
+    pointInfo.style.height = map.style.height;
+    pointInfo.className = "pointInfo pointInfo-Size";
+
+    topPointInfo();
+}
+
+function topPointInfo() {
+    var pointInfo = document.getElementById("info");
+    if ($(window).width() < 768) {
+	pointInfo.style.top = 180 + '%';
+    }
+    else {
+	pointInfo.style.top = '';
+    }
+}
+
+$(window).on("resize", topPointInfo);
+
+function hidePointInfo() {
+    /*
+      Hide the point info
+     */
+    var pointInfo = document.getElementById("info");
+    pointInfo.className = "pointInfo header-hidden";
+    pointInfo.style.width = "0%";
+}
+
+
+

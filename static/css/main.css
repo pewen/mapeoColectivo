@@ -217,10 +217,15 @@ p {
 .pointInfo {
     position: absolute;
     width: 0;
-    z-index: 1000;
+    z-index: 1100;
     transition: 0.5s;
     padding: 0px;
     background-color: white;
+}
+
+.pointInfo-Size {
+    width: 100%;
+    
 }
 
 @media only screen and (min-width : 768px) {
@@ -283,6 +288,7 @@ p {
 .legend {
     line-height: 18px;
     color: #555;
+    margin-bottom: 40px !important;
 }
 
 .legengContent {
