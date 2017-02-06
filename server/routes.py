@@ -228,7 +228,7 @@ def da_data(layer_name):
     return jsonify(data)
 
 
-@app.route('/direct_action/new_point', methods=['POST'])
+@app.route('/direct_action/point', methods=['POST'])
 def da_new_point():
     """
     Add a new point to direct action map.
@@ -239,8 +239,8 @@ def da_new_point():
 
     Errors
     ------
-    401: user dont have permission to make post
-    400: the image is empty
+    401: The user dont have permission
+    400: The image is empty
     400: Invalid type of image
     """
     # The user don't have permission
@@ -335,6 +335,70 @@ def da_new_point():
     return jsonify('201')
 
 
+@app.route('/direct_action/point_d', methods=['DELETE'])
+def da_delet_point():
+    """
+    Delet an existen point
+
+    Parameters
+    ----------
+    name: str
+      Layer name
+    id: int
+      Unique id of the point to delet
+
+    Errors
+    ------
+    401: The user don't have permission
+    400: The json is empy
+    400: The layer name don't exist
+    400: The point id don't exist
+    """
+    req_data = request.json
+
+    # First, check the data
+    # Check if the user have permission
+    if 'twitter_token' not in session:
+        print("Error: no tiene permiso")
+        abort(401, "You don't have permission")
+
+    # Check if the json is complete
+    if 'id' not in req_data:
+        abort(400, "The request json don't have a point id")
+    if 'name' not in req_data:
+        abort(400, "The request json don't have a layer name")
+
+    # Check if the layer name is valid
+    if req_data['name'] not in app.config['DA_LAYERS_NAMES']:
+        abort(400, "The layer name don't exist")
+
+    # Open the geojson dataframe
+    data_path = app.config['DA_FOLDER'] + req_data['name'] + '.geojson'
+    data = read4json(data_path)
+
+    # Get the uniques ids
+    uniques_ids = []
+    for element in data['features']:
+        uniques_ids.append(element['properties']['id'])
+
+    # Check if the point id is valid
+    if req_data['id'] not in uniques_ids:
+        abort(400, "The point id don't exist")
+
+    elements = []
+    for element in data['features']:
+        if element['properties']['id'] != req_data['id']:
+            elements.append(element)
+
+    new_data = {'features': elements,
+                'type': 'FeatureCollection'}
+
+    save2json(data_path, new_data)
+
+    # Get the uniques point id
+    return jsonify({'201': 'Point delete'})
+
+
 """
 Citizen map routes
 ------------------
@@ -375,7 +439,7 @@ def citizen_map(layer_name):
     return jsonify(data)
 
 
-@app.route('/citizen_map/new_point', methods=['POST'])
+@app.route('/citizen_map/point', methods=['POST'])
 def citizen_new_point():
     """
     Add a new point to direct action map
@@ -466,6 +530,70 @@ def citizen_new_point():
     create_menssage("direct_action", data['tipo'])
 
     return jsonify('201')
+
+
+@app.route('/citizen_map/point', methods=['DELETE'])
+def cm_delet_point():
+    """
+    Delet an existen point
+
+    Parameters
+    ----------
+    name: str
+      Layer name
+    id: int
+      Unique id of the point to delet
+
+    Errors
+    ------
+    401: The user don't have permission
+    400: The json is empy
+    400: The layer name don't exist
+    400: The point id don't exist
+    """
+    req_data = request.json
+
+    # First, check the data
+    # Check if the user have permission
+    if 'twitter_token' not in session:
+        print("Error: no tiene permiso")
+        abort(401, "You don't have permission")
+
+    # Check if the json is complete
+    if 'id' not in req_data:
+        abort(400, "The request json don't have a point id")
+    if 'name' not in req_data:
+        abort(400, "The request json don't have a layer name")
+
+    # Check if the layer name is valid
+    if req_data['name'] not in app.config['CM_LAYERS_NAMES']:
+        abort(400, "The layer name don't exist")
+
+    # Open the geojson dataframe
+    data_path = app.config['CM_FOLDER'] + req_data['name'] + '.geojson'
+    data = read4json(data_path)
+
+    # Get the uniques ids
+    uniques_ids = []
+    for element in data['features']:
+        uniques_ids.append(element['properties']['id'])
+
+    # Check if the point id is valid
+    if req_data['id'] not in uniques_ids:
+        abort(400, "The point id don't exist")
+
+    elements = []
+    for element in data['features']:
+        if element['properties']['id'] != req_data['id']:
+            elements.append(element)
+
+    new_data = {'features': elements,
+                'type': 'FeatureCollection'}
+
+    save2json(data_path, new_data)
+
+    # Get the uniques point id
+    return jsonify({'201': 'Point delete'})
 
 
 """
