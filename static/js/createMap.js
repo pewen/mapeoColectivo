@@ -13,6 +13,38 @@
   typemap: str
     Can be "direct_action/" or "citizen_map/"
 */
+// Templates
+/*
+  {0}: color
+  {1}: legendName
+*/
+var legendTemplate = `
+<div class="legengContent" onclick="hideShowLayer('{1}')">
+    <i style="background: {0}"></i>
+    <span> {1} </span>
+</div>`
+
+/* Parameters
+  {0}: layer name
+  {1}: point id
+*/
+var deletPointTemplate = `
+<button type='button' class='btn btn-danger'
+        onClick="deletePoint('{0}', {1})">
+    Borrar
+</button>`
+
+/* Parameters
+  {0}: layer name
+  {1}: point id
+*/
+var validatePointTemplate = `
+<button type='button' class='btn btn-info'
+        onClick="validatePoint('{0}', {1})">
+    Validar
+</button>`
+
+
 var map; // Map variable
 
 // Color of each type of point (depending the site)
@@ -77,9 +109,8 @@ legend.onAdd = function (map) {
     // loop through layers names and generate a
     // label with a colored circle for each layer
     for (var color in layersColors) {
-        div.innerHTML +=
-            '<i style="background:' + layersColors[color] + '"></i> ' +
-            '<span>' + color + '</span><br>';
+        div.innerHTML += legendTemplate.format(layersColors[color],
+					       color);
     }
     return div;
 };
@@ -202,24 +233,17 @@ function hidePointInfo() {
 }
 
 
+function hideShowLayer(name) {
+    /*
+      Hide show a layer
+    */
+    name = name.toLowerCase().replace(' ', '_');
+    var isVisible = map.hasLayer(layers[name]);
 
-// Templates
-/* Parameters
-  {0}: layer name
-  {1}: point id
-*/
-var deletPointTemplate = `
-<button type='button' class='btn btn-danger'
-        onClick="deletePoint('{0}', {1})">
-    Borrar
-</button>`
-
-/* Parameters
-  {0}: layer name
-  {1}: point id
-*/
-var validatePointTemplate = `
-<button type='button' class='btn btn-info'
-        onClick="validatePoint('{0}', {1})">
-    Validar
-</button>`
+    if (isVisible) {
+	map.removeLayer(layers[name]);
+    }
+    else {
+	map.addLayer(layers[name]);
+    }
+}
