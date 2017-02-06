@@ -141,20 +141,23 @@ function newPoint() {
 }
 
 
-function validatePoint(typeMap, pointId) {
+function validatePoint(layerName, pointId) {
     /*
       Validate an existen point
     */
-
-    var request = {'id': pointId};
-
-    var xhr = new XMLHttpRequest();
+    var request = {'id': pointId,
+		   'name': layerName.replace(' ', '_')};
     var data = JSON.stringify(request);
+    
+    var xhr = new XMLHttpRequest();
+    var deleteUrl = serverUrl + typeMap + 'point';
 
     // Use the cookies in the post
     xhr.withCredentials = true;
-
     
+    xhr.open("PUT", deleteUrl);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
 }
 
 
@@ -164,7 +167,6 @@ function deletePoint(layerName, pointId) {
     */
     var request = {'id': pointId,
 		   'name': layerName.replace(' ', '_')};
-    console.log(request);
     var data = JSON.stringify(request);
     
     var xhr = new XMLHttpRequest();

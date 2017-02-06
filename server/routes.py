@@ -591,9 +591,65 @@ def cm_delet_point():
                 'type': 'FeatureCollection'}
 
     save2json(data_path, new_data)
-
-    # Get the uniques point id
     return jsonify({'201': 'Point delete'})
+
+
+@app.route('/citizen_map/point', methods=['PUT'])
+def cm_validate_point():
+    """
+    Validate a point
+
+    Parameters
+    ----------
+    name: str
+      Layer name
+    id: int
+      Unique id of the point to delet
+
+    Errors
+    ------
+    401: The user don't have permission
+    400: The json is empy
+    400: The layer name don't exist
+    400: The point id don't exist
+    """
+    req_data = request.json
+
+    # First, check the data
+    # Check if the user have permission
+    if 'twitter_token' not in session:
+        print("Error: no tiene permiso")
+        abort(401, "You don't have permission")
+
+    # Check if the json is complete
+    if 'id' not in req_data:
+        abort(400, "The request json don't have a point id")
+    if 'name' not in req_data:
+        abort(400, "The request json don't have a layer name")
+
+    # Check if the layer name is valid
+    if req_data['name'] not in app.config['CM_LAYERS_NAMES']:
+        abort(400, "The layer name don't exist")
+
+    # Open the geojson dataframe
+    data_path = app.config['CM_FOLDER'] + req_data['name'] + '.geojson'
+    data = read4json(data_path)
+
+    # Get the uniques ids
+    uniques_ids = []
+    for element in data['features']:
+        uniques_ids.append(element['properties']['id'])
+
+    # Check if the point id is valid
+    if req_data['id'] not in uniques_ids:
+        abort(400, "The point id don't exist")
+
+    for element in data['features']:
+        if element['properties']['id'] == req_data['id']:
+            element['properties']['valido'] = True
+
+    save2json(data_path, data)
+    return jsonify({'201': 'Point validate'})
 
 
 """
