@@ -1,3 +1,18 @@
+/*
+  Create, validate and delete point summit
+
+  Global variables previously declared
+  ------------------------------------
+  serverUrl: str
+    Base url of the server
+  layersNames: object
+    Names of all the layers
+  isDirectActionUrl: bool
+    True if the page is direct_action.html
+  typemap: str
+    Can be "direct_action/" or "citizen_map/"
+*/
+
 // Reset the form
 $('form').each(function() { this.reset(); });
 
@@ -50,7 +65,7 @@ var correctName = {
     "Taller": "taller"
 }
 
-function summitNewPoint() {
+function newPoint() {
     /*
       Summit a new point to the server
      */
@@ -92,7 +107,7 @@ function summitNewPoint() {
     xhr.addEventListener("load", transferComplete);
     xhr.addEventListener("error", transferFailed);
 
-    postUrl = serverUrl + "direct_action/new_point"
+    postUrl = serverUrl + "direct_action/point"
     xhr.open("POST", postUrl);
     xhr.overrideMimeType('multipart/form-data');
     
@@ -123,4 +138,42 @@ function summitNewPoint() {
 		alert(xhr.response);
 	}
     }
+}
+
+
+function validatePoint(typeMap, pointId) {
+    /*
+      Validate an existen point
+    */
+
+    var request = {'id': pointId};
+
+    var xhr = new XMLHttpRequest();
+    var data = JSON.stringify(request);
+
+    // Use the cookies in the post
+    xhr.withCredentials = true;
+
+    
+}
+
+
+function deletePoint(layerName, pointId) {
+    /*
+      Delete a point
+    */
+    var request = {'id': pointId,
+		   'name': layerName.replace(' ', '_')};
+    console.log(request);
+    var data = JSON.stringify(request);
+    
+    var xhr = new XMLHttpRequest();
+    var deleteUrl = serverUrl + typeMap + 'point';
+
+    // Use the cookies in the post
+    xhr.withCredentials = true;
+    
+    xhr.open("DELETE", deleteUrl);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
 }

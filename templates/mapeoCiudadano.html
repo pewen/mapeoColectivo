@@ -66,6 +66,7 @@ type_new_point:
 	</div><!--entry-social -->
 	
 	<div class="pointTags">
+	  <div id="validDeleteButtons"></div>
 	  <span id="pointType"></span></br>
 	  <span id="pointDate"></span>
 	</div><!--/ -->
@@ -198,7 +199,7 @@ type_new_point:
         <button type="button" class="btn btn-default" data-dismiss="modal">
 	  Cerrar
 	</button>
-        <button type="button" class="btn btn-primary" onclick="summitNewPoint()">
+        <button type="button" class="btn btn-primary" onclick="newPoint()">
 	  Agregar
 	</button>
       </div><!--/modal-footer -->
@@ -226,6 +227,18 @@ type_new_point:
 <script>
   var layersNames = {{ layersNames  | safe }};
   var serverUrl = "{{ serverUrl }}";
+
+  // isDirectAction == true if is the directAction url
+  var actualUrl = window.location.href.indexOf("/accionDirecta");
+  var isDirectActionUrl = actualUrl > -1;
+  
+  // Type of map depending of the url
+  if (isDirectActionUrl) {
+    var typeMap = "direct_action/";
+  }
+  else {
+    var typeMap = "citizen_map/";
+  }
 </script>
 {% endraw %}
 
@@ -236,7 +249,7 @@ type_new_point:
 <!-- Get geoPosition of the user -->
 <script src="static/js/geoPosition.js"></script>
 <!-- Summit the new point -->
-<script src="static/js/summitNewPoint.js"></script>
+<script src="static/js/addDeletPoint.js"></script>
 <!-- Resposive Map -->
 <script src="static/js/responsiveMap.js"></script>
 
