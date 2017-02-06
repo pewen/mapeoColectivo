@@ -527,7 +527,7 @@ def citizen_new_point():
     save2json(data_path, df)
 
     # Update the message
-    create_menssage("direct_action", data['tipo'])
+    # create_menssage("citizen_map", data['tipo'])
 
     return jsonify('201')
 
