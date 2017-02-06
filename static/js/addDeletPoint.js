@@ -109,7 +109,7 @@ function newPoint() {
     xhr.addEventListener("load", transferComplete);
     xhr.addEventListener("error", transferFailed);
 
-    postUrl = serverUrl + "direct_action/point"
+    postUrl = serverUrl + typeMap + "/point"
     xhr.open("POST", postUrl);
     xhr.overrideMimeType('multipart/form-data');
     
