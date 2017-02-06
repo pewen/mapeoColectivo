@@ -1,20 +1,19 @@
 /*
-  Create the two difetens map ( direct action and citizen map)
-  depenginf the url
+  Create the two difetens map: direct action and citizen map
+  depending the url
+
+  Global variables previously declared
+  ------------------------------------
+  serverUrl: str
+    Base url of the server
+  layersNames: object
+    Names of all the layers
+  isDirectActionUrl: bool
+    True if the page is direct_action.html
+  typemap: str
+    Can be "direct_action/" or "citizen_map/"
 */
-
 var map; // Map variable
-// isDirectAction == true if is the directAction url
-var actualUrl = window.location.href.indexOf("/accionDirecta");
-var isDirectActionUrl = actualUrl > -1;
-
-// Type of map depending of the url
-if (isDirectActionUrl) {
-    var typeMap = "direct_action/";
-}
-else {
-    var typeMap = "citizen_map/";
-}
 
 // Color of each type of point (depending the site)
 if (isDirectActionUrl) {
@@ -88,6 +87,7 @@ legend.onAdd = function (map) {
 legend.addTo(map);
 
 // Point style
+// The style depending is the point is valid or not
 function pointToLayer(feature, latlng) {
     if (feature.properties.valido) {
 	var style = {
@@ -102,14 +102,14 @@ function pointToLayer(feature, latlng) {
 	return L.circleMarker(latlng, style);
     }
     else {
-	var redMarker = L.ExtraMarkers.icon({
+	var validMarker = L.ExtraMarkers.icon({
 	    icon: 'fa-check',
 	    markerColor: 'red',
 	    shape: 'square',
 	    prefix: 'fa'
 	});
 
-	return L.marker(latlng, {icon: redMarker,});
+	return L.marker(latlng, {icon: validMarker,});
     }
 }
 
@@ -126,22 +126,39 @@ for (name of layersNames) {
     layers[name].addTo(map);
 }
 
-var f;
+var a;
 // Add onclick event
 for (name of layersNames) {
     layers[name].on('click', function(e) {
+	a = e;
 	showPointInfo();
 	var properties = e.layer.feature.properties;
 	var image_link = serverUrl + "image/" + properties.foto;
 
-	f = properties;
-
 	$('#pointImg').attr('src', image_link);
 	$('#pointName').text(properties.nombre);
 	$('#pointType').text('Tipo: ' + properties.tipo);
-	$('#pointDate').text('Fecha reporte: ' + properties.fecha_creacion);
+	$('#pointDate').text('Fecha reporte: ' +
+			     properties.fecha_creacion);
 	$('#pointDescription').text(properties.descripcion);
 
+	// If the user is loggin, can validete or delete
+	// the points in citizen map
+	if (getCookie("status")) {
+	    var html = "";
+	    var validDiv = document.getElementById("validDeleteButtons");
+
+	    // Validate the point button
+	    if (!properties.valido) {
+		html += validatePointTemplate.format(properties.tipo,
+						     properties.id);
+	    }
+	    // Delete the point button
+	    html += deletPointTemplate.format(properties.tipo,
+					      properties.id);
+	    validDiv.innerHTML = html;
+	}
+	
 	// Show the face and twitter only if exist a link
 	var face = document.getElementById("faceLink");
 	if (properties.face == "") {
@@ -183,3 +200,26 @@ function hidePointInfo() {
     pointInfo.className = "pointInfo header-hidden";
     pointInfo.style.width = "0%";
 }
+
+
+
+// Templates
+/* Parameters
+  {0}: layer name
+  {1}: point id
+*/
+var deletPointTemplate = `
+<button type='button' class='btn btn-danger'
+        onClick="deletePoint('{0}', {1})">
+    Borrar
+</button>`
+
+/* Parameters
+  {0}: layer name
+  {1}: point id
+*/
+var validatePointTemplate = `
+<button type='button' class='btn btn-info'
+        onClick="validatePoint('{0}', {1})">
+    Validar
+</button>`
