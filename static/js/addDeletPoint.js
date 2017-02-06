@@ -91,8 +91,8 @@ function newPoint() {
 		       'tipo': correctName[layerName],
 		       'barrio': district,
 		       'resumen': abstact,
-		       'latitud': 0,
-		       'longitud': 0}
+		       'latitud': latlong['lat'],
+		       'longitud': latlong['long']}
 
     var formData = new FormData();
     var xhr = new XMLHttpRequest();

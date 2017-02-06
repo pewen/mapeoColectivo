@@ -40,13 +40,17 @@ function geoErrorMenssage(message) {
      */
     BootstrapDialog.alert(message);
 }
-
+var latlong;
 function geoSuccess(position) {
     /*
       Sucess on getCurrentPosition()
      */
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
+
+    latlong = {'lat': latitude,
+	       'long': longitude};
+    
     var accuracy = position.coords.accuracy;
 
     var coordText = document.getElementById('coordinatesInput');
