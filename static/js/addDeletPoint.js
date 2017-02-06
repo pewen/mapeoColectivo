@@ -48,6 +48,8 @@ function getFile(files) {
 	formErrors.innerHTML = "Error: el archivo tiene que ser una foto";
 	file = '';
     };
+
+    return false
 }
 
 var correctName = {

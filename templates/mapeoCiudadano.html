@@ -137,7 +137,8 @@ type_new_point:
 	      <div class="col-xs-offset-3 col-sm-offset-3 col-xs-9 col-sm-9">
 		<input id="fileElem" type="file" accept="image/*"
 		       name="photos" capture="camera"
-		       style="display:none" onchange="getFile(this.files)" />
+		       style="display:none"
+		       onchange="return getFile(this.files)" />
 		<button id="fileSelect" class="btn btn-default" type="submit">
 		  Tomar Foto
 		</button>
