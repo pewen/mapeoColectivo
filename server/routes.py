@@ -487,7 +487,7 @@ def citizen_new_point():
         abort(400, "Invalid type of image")
 
     # Invalid data layer
-    if data['tipo'] not in app.config['DA_LAYERS_NAMES']:
+    if data['tipo'] not in app.config['CM_LAYERS_NAMES']:
         print("Error: Nombre de capa invalido")
         abort(400, "Invalid layer name")
 
