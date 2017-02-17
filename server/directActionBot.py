@@ -28,7 +28,7 @@ from .keys import da_telegram_token
 # First, check if the log dir exist
 log_dir = 'logs/'
 dirs = os.listdir()
-if log_dir not in dirs:
+if log_dir[:-1] not in dirs:
     os.mkdir(log_dir)
 
 # Initialize the logging
