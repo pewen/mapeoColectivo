@@ -16,20 +16,27 @@ TODO:
 * Si el usuario no habilita el gps, dar un error.
 """
 import logging
+import os
 
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import Updater, CommandHandler, MessageHandler,\
     Filters, RegexHandler, ConversationHandler
 
-from keys import da_telegram_token
+from .keys import da_telegram_token
 
+
+# First, check if the log dir exist
+log_dir = 'logs/'
+dirs = os.listdir()
+if log_dir not in dirs:
+    os.mkdir(log_dir)
 
 # Initialize the logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 # Create a file handler
-handler = logging.FileHandler('telegramDirectAction.log')
+handler = logging.FileHandler(log_dir + 'telegramDirectAction.log')
 handler.setLevel(logging.INFO)
 
 # Create a logging format
